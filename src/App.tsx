@@ -3,6 +3,7 @@ import "./App.css";
 import InputField from "./components/InputField";
 import { styled } from "@mui/system";
 import Button from '@mui/material/Button';
+import TokenOutput from "./components/TokenOutput";
 
 const InputWrapper = styled("div")({
   color: "darkslategray",
@@ -25,7 +26,20 @@ function App() {
   const [redTokenNumberValue, setRedTokenNumberValue] = useState();
   const [redTokenRow, setRedTokenRow] = useState();
   const [redTokenPrefix, setRedTokenPrefix] = useState('');
+
+  const [blueTokenArray, setBlueTokenArray] = useState([])
  
+  const handleTokenGenerator = () => {
+    const arr = new Array()
+    for (let i = 0; i < blueTokenNumberValue; i++) {
+      blueTokenArray?.push(i)
+    }
+    console.log(blueTokenArray);
+    
+  }
+
+  
+  
   
   return (
     <div className="App">
@@ -55,9 +69,14 @@ function App() {
         />
       </InputWrapper>
         <ButtonContainer>
-        <Button variant="contained">Gernerate Token</Button>
+        <Button onClick={()=>handleTokenGenerator()} variant="contained">Gernerate Token</Button>
         <Button variant="outlined">Clear</Button>
         </ButtonContainer>
+        <div>
+          {blueTokenArray?.map((item, index) => {
+            return <button>{index+1}</button>
+          })}
+        </div>
     </div>
   );
 }
