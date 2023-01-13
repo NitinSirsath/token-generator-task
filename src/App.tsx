@@ -20,22 +20,45 @@ const ButtonContainer = styled('div')({
  });
 
 function App() {
-  const [blueTokenNumberValue, setBlueTokenNumberValue] = useState();
-  const [blueTokenRow, setBlueTokenRow] = useState();
+  const [blueTokenNumberValue, setBlueTokenNumberValue] = useState<number>(0);
+  const [blueTokenRow, setBlueTokenRow] = useState(0);
   const [blueTokenPrefix, setBlueTokenPrefix] = useState('');
-  const [redTokenNumberValue, setRedTokenNumberValue] = useState();
-  const [redTokenRow, setRedTokenRow] = useState();
+  const [redTokenNumberValue, setRedTokenNumberValue] = useState(0);
+  const [redTokenRow, setRedTokenRow] = useState(0);
   const [redTokenPrefix, setRedTokenPrefix] = useState('');
 
-  const [blueTokenArray, setBlueTokenArray] = useState([])
+  const [blueTokenArray, setBlueTokenArray] = useState<number[]>()
+  const [redTokenArray, setRedTokenArray] = useState<number[]>()
  
   const handleTokenGenerator = () => {
-    const arr = new Array()
-    for (let i = 0; i < blueTokenNumberValue; i++) {
-      blueTokenArray?.push(i)
-    }
-    console.log(blueTokenArray);
+   
     
+    if (blueTokenNumberValue && blueTokenRow && blueTokenPrefix && redTokenRow && redTokenPrefix &&redTokenNumberValue) {
+      const blueArr = Array.from({length: blueTokenNumberValue}, (_v, i) => i);
+    setBlueTokenArray(blueArr)
+    const redArr = Array.from({length: redTokenNumberValue}, (_v, i) => i);
+    setRedTokenArray(redArr)
+    
+    }
+    else{
+      alert('Please fill all the fields')
+    }
+    // for (let i = 0; i < blueTokenNumberValue; i++) {
+    //   blueTokenArray?.push(i)
+    // }
+    // console.log(blueTokenArray);
+    
+  }
+
+  const handleClearButton = () => {
+    setBlueTokenNumberValue(0)
+    setBlueTokenRow(0)
+    setBlueTokenPrefix('')
+    setRedTokenNumberValue(0)
+    setRedTokenRow(0)
+    setRedTokenPrefix('')
+    setBlueTokenArray([])
+    setRedTokenArray([])
   }
 
   
@@ -70,12 +93,19 @@ function App() {
       </InputWrapper>
         <ButtonContainer>
         <Button onClick={()=>handleTokenGenerator()} variant="contained">Gernerate Token</Button>
-        <Button variant="outlined">Clear</Button>
+        <Button onClick={()=>handleClearButton()} variant="outlined">Clear</Button>
         </ButtonContainer>
         <div>
-          {blueTokenArray?.map((item, index) => {
-            return <button>{index+1}</button>
-          })}
+         <TokenOutput tokenArray={blueTokenArray}
+         tokenPrefix={blueTokenPrefix}
+         tokenRow={blueTokenRow}
+         color="primary"
+         />
+         <TokenOutput tokenArray={redTokenArray}
+         tokenPrefix={redTokenPrefix}
+         tokenRow={redTokenRow}
+         color="error"
+         />
         </div>
     </div>
   );

@@ -12,7 +12,7 @@ interface InputFieldProps {
     TokenNumberlabel: string,
     TokenPerRowLabel: string,
     TokenPrefixLabel: string,
-    TokenNumberValue: any,
+    TokenNumberValue: number,
     setTokenNumberValue: any,
     TokenRow: any,
     setTokenRow: any,
