@@ -33,7 +33,7 @@ function App() {
   const handleTokenGenerator = () => {
    
     
-    if (blueTokenNumberValue && blueTokenRow && blueTokenPrefix && redTokenRow && redTokenPrefix &&redTokenNumberValue) {
+    if (blueTokenNumberValue !==0 && blueTokenRow !== 0 && blueTokenPrefix && redTokenRow !== 0 && redTokenPrefix &&redTokenNumberValue !==0) {
       const blueArr = Array.from({length: blueTokenNumberValue}, (_v, i) => i);
     setBlueTokenArray(blueArr)
     const redArr = Array.from({length: redTokenNumberValue}, (_v, i) => i);
