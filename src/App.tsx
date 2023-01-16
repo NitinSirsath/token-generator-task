@@ -29,6 +29,8 @@ function App() {
 
   const [blueTokenArray, setBlueTokenArray] = useState<number[]>()
   const [redTokenArray, setRedTokenArray] = useState<number[]>()
+
+  const [flag, setFlag] = useState(false)
  
   const handleTokenGenerator = () => {
    
@@ -38,10 +40,11 @@ function App() {
     setBlueTokenArray(blueArr)
     const redArr = Array.from({length: redTokenNumberValue}, (_v, i) => i);
     setRedTokenArray(redArr)
-    
+      setFlag(false)
     }
     else{
-      alert('Please fill all the fields')
+      // alert('Please fill all the fields')
+      setFlag(true)
     }
     // for (let i = 0; i < blueTokenNumberValue; i++) {
     //   blueTokenArray?.push(i)
@@ -59,6 +62,7 @@ function App() {
     setRedTokenPrefix('')
     setBlueTokenArray([])
     setRedTokenArray([])
+    setFlag(false)
   }
 
   
@@ -67,6 +71,7 @@ function App() {
   return (
     <div className="App">
       <h1>Token Generator Application</h1>
+      {flag? <h1>please filled all the details</h1>: ''}
       <InputWrapper>
         <InputField
           TokenNumberlabel="Number of Blue tokens"
